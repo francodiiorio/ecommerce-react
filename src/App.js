@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-function App() {
+import Users from './user/pages/Users';
+import NewPlace from './products/pages/NewPlace';
+import MainNavigation from './shared/components/navigation/MainNavigation/MainNavigation';
+import UserPlaces from './user/pages/UserPlaces';
+import ProductDetail from './products/pages/ProductDetail/ProductDetail';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <MainNavigation />
+      <main>
+      <Routes>
+          <Route path="/" element={<Users />} />
+          <Route path="/:userId/places" element={<UserPlaces />} />
+          <Route path="/places/new" element={<NewPlace />} />
+          <Route path="/places/:placeId" element={<ProductDetail />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </main>
+    </Router>
   );
-}
+};
 
 export default App;

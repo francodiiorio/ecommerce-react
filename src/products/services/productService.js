@@ -1,10 +1,4 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-
-
-import PlaceList from "../../products/components/PlaceList/PlaceList"; //
-
-const DUMMY_PLACES = [
+const PRODUCTS = [
     {
         id: 'p1',
         title: 'Empire State Building',
@@ -23,10 +17,12 @@ const DUMMY_PLACES = [
     }
 ]
 
-const UserPlaces = () => {
-    const userId = useParams().userId;
-    const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId)
-    return <PlaceList items={loadedPlaces} />
-};
+const getProducts = () => {
+    return new Promise((resolve, reject) =>{
+        return resolve(PRODUCTS)
+    })
+}
 
-export default UserPlaces;
+const productService = {getProducts}
+
+export default productService
